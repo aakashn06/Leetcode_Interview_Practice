@@ -11,16 +11,16 @@ class Solution(object):
         leftIdx = 0
         rightIdx = len(height) - 1
         maxArea = 0
-        while leftIdx != rightIdx:
+        while (rightIdx - leftIdx) > 0:
             area = computeArea(leftIdx, rightIdx, height[leftIdx], height[rightIdx])
             if area > maxArea:
                 maxArea = area
-            if height[leftIdx] > height[rightIdx] or height[leftIdx + 1] > height[rightIdx - 1]:
+            if height[leftIdx] > height[rightIdx]:
                 prevHeight = height[rightIdx]
                 rightIdx -= 1
                 while height[rightIdx] <= prevHeight and rightIdx > leftIdx:
                     rightIdx -= 1
-            elif if height[leftIdx] < height[rightIdx] or height[leftIdx + 1] < height[rightIdx - 1]:
+            elif height[leftIdx] < height[rightIdx]:
                 prevHeight = height[leftIdx]
                 leftIdx += 1
                 while height[leftIdx] <= prevHeight and rightIdx > leftIdx:
@@ -28,12 +28,13 @@ class Solution(object):
             else:
                 leftIdx2 = leftIdx + 1
                 rightIdx2 = rightIdx - 1
-                while leftIdx2 == rightIdx2:
-                    area = computeArea(leftIdx2, rightIdx, heights[leftIdx2], heights[rightIdx])
+                while height[leftIdx2] == height[rightIdx2] and (rightIdx2 - leftIdx2) > 0:
+                    area = computeArea(leftIdx2, rightIdx, height[leftIdx2], height[rightIdx])
                     if area > maxArea:
                         maxArea = area
                     leftIdx2 = leftIdx + 1
                     rightIdx2 = rightIdx - 1
+            return maxArea
                 
 
         """
