@@ -5,16 +5,19 @@ class Solution(object):
                 height = height2
             else:
                 height = height1
-            width = abs(height2 - height1)
+            width = abs(index2 - index1)
             return (width * height)
         
         leftIdx = 0
         rightIdx = len(height) - 1
         maxArea = 0
         while (rightIdx - leftIdx) > 0:
+            print(maxArea)
+            print("right-left =", rightIdx - leftIdx)
             area = computeArea(leftIdx, rightIdx, height[leftIdx], height[rightIdx])
             if area > maxArea:
                 maxArea = area
+                print(maxArea)
             if height[leftIdx] > height[rightIdx]:
                 prevHeight = height[rightIdx]
                 rightIdx -= 1
@@ -32,9 +35,15 @@ class Solution(object):
                     area = computeArea(leftIdx2, rightIdx, height[leftIdx2], height[rightIdx])
                     if area > maxArea:
                         maxArea = area
+                        print(maxArea)
                     leftIdx2 = leftIdx + 1
                     rightIdx2 = rightIdx - 1
-            return maxArea
+                if height[leftIdx2] > height[rightIdx2]:
+                    leftIdx = leftIdx2
+                else:
+                    rightIdx = rightIdx2
+                
+        return maxArea
                 
 
         """
