@@ -14,7 +14,7 @@ class Solution(object):
 
         # Write set bit counter
         def set_bit_count(num):
-            i = 7
+            i = 19
             count = 0
             while i > -1:
                 quotient = num / (2 ** i)
